@@ -5,6 +5,7 @@ const db = require('./config/keys').mongoURI
 const bodyParser = require('body-parser')
 const expressGraphQL = require('express-graphql')
 const User = require('./models/User')
+const Post = require('./models/Post')
 const schema = require('./schema/schema')
 
 mongoose

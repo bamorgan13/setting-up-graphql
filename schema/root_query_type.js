@@ -2,7 +2,9 @@ const graphql = require('graphql')
 const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql
 const mongoose = require('mongoose')
 const User = mongoose.model('user')
+const Post = mongoose.model('post')
 const UserType = require('./user_type')
+const PostType = require('./post_type')
 
 const RootQuery = new GraphQLObjectType({
 	name: 'RootQueryType',
@@ -18,6 +20,12 @@ const RootQuery = new GraphQLObjectType({
 			args: { id: { type: new GraphQLNonNull(GraphQLID) } },
 			resolve(parentValue, { id }) {
 				return User.findById(id)
+			}
+		},
+		posts: {
+			type: new GraphQLList(PostType),
+			resolve() {
+				return Post.find({})
 			}
 		}
 	}
