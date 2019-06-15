@@ -27,6 +27,13 @@ const RootQuery = new GraphQLObjectType({
 			resolve() {
 				return Post.find({})
 			}
+		},
+		post: {
+			type: PostType,
+			args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+			resolve(parentValue, { id }) {
+				return Post.findById(id)
+			}
 		}
 	}
 })
