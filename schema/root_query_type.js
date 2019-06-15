@@ -15,7 +15,7 @@ const RootQuery = new GraphQLObjectType({
 		},
 		user: {
 			type: UserType,
-			args: { id: { type: new GraQLNonNull(GraphQLID) } },
+			args: { id: { type: new GraphQLNonNull(GraphQLID) } },
 			resolve(parentValue, { id }) {
 				return User.findById(id)
 			}

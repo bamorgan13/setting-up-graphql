@@ -4,6 +4,8 @@ const app = express()
 const db = require('./config/keys').mongoURI
 const bodyParser = require('body-parser')
 const expressGraphQL = require('express-graphql')
+const User = require('./models/User')
+const schema = require('./schema/schema')
 
 mongoose
 	.connect(db, { useNewUrlParser: true })
@@ -12,6 +14,6 @@ mongoose
 
 app.use(bodyParser.json())
 
-app.use('/graphql', expressGraphQL({ graphiql: true }))
+app.use('/graphql', expressGraphQL({ schema, graphiql: true }))
 
 app.listen(5000, () => console.log('Server is running on port 5000'))
